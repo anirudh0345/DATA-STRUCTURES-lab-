@@ -1,0 +1,53 @@
+#include<stdio.h>
+#define SIZE 100
+struct student
+{
+    int id;
+    int age;
+    int marks;
+};
+int i;
+void accept_input(struct student *s)
+{
+    printf("Enter the id: ");
+    scanf("%d",&s[i].id);
+    printf("Enter the age : ");
+    scanf("%d",&s[i].age);
+    printf("Enter the marks: ");
+    scanf("%d",&s[i].marks);
+}
+void display_output(struct student *s)
+{
+    if (s[i].age<20 || s[i].marks<65 )
+    {
+     printf("Student is ineligible for admission\n");
+    } 
+    else if(s[i].marks<0 || s[i].marks>100)
+    {
+        printf("Marks entered is invalid");
+    }
+    else
+    {
+    printf("Student is eligible for admission\n");
+    printf("Student details are:\n");
+    printf("ID of student is: %d\t ",s[i].id);
+    printf("Age of student is: %d\t ",s[i].age);
+    printf("Marks of student is: %d\n ",s[i].marks);
+    }
+}
+int main()
+{
+struct student s[SIZE];
+int i,no_of_students;
+printf("Enter no. of students here: ");
+scanf("%d",&no_of_students);
+for(i=0;i<no_of_students;i++)
+{
+    accept_input(&s[i]);
+}
+for(i=0;i<no_of_students;i++)
+{
+    display_output(&s[i]);
+}
+return 0;
+}
