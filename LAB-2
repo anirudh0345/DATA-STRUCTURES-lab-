@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <bool.h>
+#define SIZE 10
+int i;
+int top=-1;
+int A[10];
+void push(int value)
+{
+    top=top+1;
+    A[top]=value;
+}
+void pop()
+{
+    top=top-1;
+}
+void display()
+{
+    for(i=top;i>=0;i--)
+    {
+    printf(" %d ",&A[i]);
+    }
+}
+bool isfull()
+{
+    if(top==10)
+    return(true);
+    else
+    return(false);
+}
+bool isempty()
+{
+    if(top==-1)
+    return(true);
+    else
+    return(false);
+}
+int main()
+{
+    int choice,x;
+    while(1)
+    {
+    printf("MENU\n");
+    printf("\nPUSH:1\nPOP:2\nDISPLAY:3\nEXIT:4");
+    printf("\nEnter your choice here: ");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+        if(isfull())
+        {
+        printf("\nStack overflow");
+        }
+        else
+        {
+        printf("\nEnter the element to be inserted: ");
+        scanf("%d",&x);
+        push(x);
+        printf("\nInsertion was successfull");
+        }
+        break;
+        case 2:
+        if(isempty())
+        {
+        printf("\nStack underflow");
+        }
+        else
+        {
+        pop();
+        }
+        break;
+        case 3:
+        printf("\nElements of the stack are: ");
+        display();
+        break;
+        case 4:
+        exit(0);
+        default:("\nIncorrect number entered , please try again");
+    }
+    }
+     return 0;
+}
