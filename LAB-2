@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <bool.h>
+#include <stdbool.h>
 #define SIZE 10
 int i;
 int top=-1;
@@ -18,7 +18,7 @@ void display()
 {
     for(i=top;i>=0;i--)
     {
-    printf(" %d ",&A[i]);
+    printf(" %d ",A[i]);
     }
 }
 bool isfull()
@@ -40,7 +40,7 @@ int main()
     int choice,x;
     while(1)
     {
-    printf("MENU\n");
+    printf("\nMENU\n");
     printf("\nPUSH:1\nPOP:2\nDISPLAY:3\nEXIT:4");
     printf("\nEnter your choice here: ");
     scanf("%d",&choice);
@@ -75,7 +75,7 @@ int main()
         break;
         case 4:
         exit(0);
-        default:("\nIncorrect number entered , please try again");
+        default:printf("\nIncorrect number entered , please try again");
     }
     }
      return 0;
