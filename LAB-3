@@ -75,9 +75,5 @@ void main()
           push(ch);
         }
     }
-    printf("\n The postfix expression is:\n");
-    for(k=0;k<6;k++)
-    {
-        printf("%c",&postfix[k]);
-    }
+    printf("\n The postfix expression is %s:\n",postfix);
   }
