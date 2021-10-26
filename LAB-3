@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+#include <stdbool.h>
+#define SIZE 50
+int i;
+char stack[SIZE];
+int top=-1;
+void push(char elem)
+{
+ top=top+1;
+ stack[++top]=elem;
+}
+char pop()
+{
+    return(stack[top--]);
+}
+void display()
+{
+    for(i=top;i>0;i--)
+    printf("%c",stack[i]);
+}
+bool isempty()
+{
+    if(top==-1)
+    return(true);
+    else
+    return(false);
+}
+int pr(char symbol)
+{
+    if(symbol=='^')
+    return(3);
+    else if(symbol=='*' || symbol=='/')
+    return(2);
+    else if(symbol=='+' || symbol=='-')
+    return(1);
+    else
+    return(0);
+}
+
+void main()
+{
+    int i=0,k=0;
+    char ch;
+    char infix[50],postfix[50],elem;
+    printf("Enter the infix expression here: ");
+    scanf("%s",infix);
+    while(ch==infix[i++]!='\0')
+    {
+        if(ch=='(' && !isempty())
+        {
+            push(ch);
+        }
+        else if(isalnum(ch))
+        {
+            postfix[k++]=ch;
+        }
+        else if(ch==')')
+        {
+            while(stack[top]!='(' && !isempty())
+            {
+               postfix[k++]=pop();
+               elem=pop();
+            }
+            pop('(');
+        }
+        else
+        {
+            while(pr(stack[top])>=pr(ch))
+            {
+                postfix[k++]=pop();
+            }
+          push(ch);
+        }
+    }
+    printf("\n The postfix expression is:\n");
+    for(k=0;k<6;k++)
+    {
+        printf("%c",&postfix[k]);
+    }
+  }
