@@ -4,7 +4,7 @@
 #define SIZE 50
 char stack[SIZE];
 int top=-1;
-push(char elem)
+void push(char elem)
 {
     stack[++top]=elem;
 }
@@ -30,7 +30,7 @@ int main()
     printf("Enter infix expression here: \n");
     scanf("%s",infix);
     push('#');
-    while( (ch==infix[i++]) !='\0')
+    while( (ch=infix[i++]) !='\0')
     {
         if( ch == '(')
         {
