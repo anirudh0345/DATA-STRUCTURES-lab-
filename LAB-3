@@ -65,3 +65,67 @@ int main()
     printf("\nConverted postfix expression is: %s",postfix);
     return(0);
 }
+
+//Postfix evaluation
+#include <stdio.h>
+#include <ctype.h>
+int stack[20];
+int top = -1;
+void push(int x)
+{
+    stack[++top]= x;
+}
+int pop()
+{
+    return stack[top--];
+}
+int main()
+{
+    char postfix[20];
+    char *p;
+    int n1,n2,n3,num;
+    printf("Enter the postfix expression : ");
+    scanf("%s",postfix);
+    p=postfix;
+    while(*p !='\0')
+    { 
+        if(isdigit(*p))
+        {
+            num = *p - 48;
+            push(num);
+        }
+        else
+            {
+               n2=pop();
+               n1=pop();
+               switch(*p)
+               {
+                   case '+' :
+                   {
+                   n3 = n1+n2;
+                   break;
+                   }
+                   case '-' :
+                   {
+                   n3 = n1-n2;
+                   break;
+                   }
+                   case '*' :
+                   {
+                   n3 = n1*n2;
+                   break;
+                   }
+                   case '/' :
+                   {
+                   n3 = n1/n2;
+                   break;
+                   }
+              }
+            push(n3);
+            }
+            p++;
+    }
+     printf("\nThe result of the expression is %s = %d\n",postfix,pop());
+return 0;
+}
+
