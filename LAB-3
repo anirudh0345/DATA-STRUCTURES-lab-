@@ -148,3 +148,36 @@ long int fact(int n)
     else return 1;
 }
 
+//Indirect recursion  Printing odd and even numbers from nt to 20
+
+#include <stdio.h>
+#include<math.h>
+int odd(int n)
+{
+    if(n<=20)
+    {
+        printf("%d",n+1);
+        n++;
+        even(n);
+    }
+ return;
+}
+int even(int n)
+{
+    if(n<=20)
+    {
+        printf("%d",n-1);
+        n++;
+        odd(n);
+    }
+ return;
+}
+int main()
+{
+    int num;
+    printf("Enter any number from 1 to 19 : ");
+    scanf("%d",&num);
+    odd(num);
+    return 0;
+}
+
