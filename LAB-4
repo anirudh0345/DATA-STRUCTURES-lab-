@@ -1,0 +1,94 @@
+//LINEAR QUEUE
+#include <stdio.h>
+#include <stdbool.h>
+#define SIZE 5
+int linear_queue[5];
+int rear=-1,front=-1;
+bool is_empty()
+{
+    if(rear==-1 && front==-1)
+    return(true);
+    else
+    return(false);
+}
+bool is_full()
+{
+    if(rear==4)
+    return(true);
+    else
+    return(false);
+}
+void enqueue(int value)
+{
+    if(is_full())
+    {
+        printf("Queue is full\n");
+    }
+    else if(is_empty())
+    {
+        rear++;
+        front++;
+        linear_queue[rear]=value;
+    }
+    else
+    {
+        rear++;
+        linear_queue[rear]=value;
+    }
+}
+void dequeue()
+{
+    if(is_empty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+    else if(front==rear)
+    {
+        rear=-1;
+        front=-1;
+    }
+    else
+    {
+        front++;
+    }
+}
+int main()
+{
+    int choice,i;
+    int num;
+    printf("Linear queue\n");
+    while(1)
+    {
+    printf("Enter the corresponding number for the action to be performed.\n");
+    printf("1:Insert 2:Delete 3:Display\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+       case 1:
+       printf("Enter the integer to be inserted\n");
+       scanf("%d",&num);
+       enqueue(num);
+       break;
+       case 2:
+       dequeue();
+       break;
+       case 3:
+       printf("Elements of the queue are:\n");
+       if(is_empty())
+       {
+           printf("Queue is empty\n");
+       }
+       else
+       {
+           for(i=front;i<rear+1;i++)
+        {
+            printf("%d\n",linear_queue[i]);
+        }
+       }
+       break;
+       default:printf("Incorrect choice entered\n");
+    }
+    }
+return 0;
+}
