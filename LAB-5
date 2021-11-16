@@ -1,0 +1,88 @@
+//Circular Queue
+#include <stdio.h>
+#include <stdbool.h>
+#define SIZE 10
+int circular_queue[8];
+int rear = -1;
+int front = -1;
+bool is_full()
+{
+    if((rear+1)%8 == front)
+    return true;
+    else
+    return false;
+}
+bool is_empty()
+{
+    if(front == -1)
+    return true;
+    else
+    return false;
+}
+void enqueue(int value)
+{
+    if(is_full())
+    {
+        printf("Queue is full");
+    }
+    else if(is_empty())
+    {
+        front = 0;
+        rear = 0;
+    }
+    else
+    {
+        rear=(rear+1)%8;
+    }
+    circular_queue[rear]=value;
+}
+void dequeue()
+{
+    if(is_empty())
+    {
+        printf("Queue is empty");
+    }
+    else if((rear == front))
+    {
+        front = -1;
+        rear = -1;
+    }
+    else
+    {
+        front=(front+1)%8;
+    }
+}
+
+int main()
+{
+    int choice,i,num;
+    printf("    Circular Queue  \n");
+    while(1)
+    {
+        printf("\nInsert :1 Delete :2 Display :3 Exit:4\n");
+        printf("Enter the choice\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            printf("Enter the element to be inserted\n");
+            scanf("%d",&num);
+            enqueue(num);
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            printf("Elements of the queue are:\n");
+            for(i=front;i!=(rear);i=(i+1)%SIZE)
+            {
+                printf(" %d ",circular_queue[i]);
+            }
+            printf("%d",circular_queue[rear]);
+            break;
+            default: printf("Incorrect choice entered\n");
+        }
+    }
+
+    return 0;
+}
