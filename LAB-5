@@ -24,17 +24,18 @@ void enqueue(int value)
     if(is_full())
     {
         printf("Queue is full");
+        circular_queue[rear]=value;
     }
     else if(is_empty())
     {
         front = 0;
         rear = 0;
+        circular_queue[rear]=value;
     }
     else
     {
         rear=(rear+1)%8;
     }
-    circular_queue[rear]=value;
 }
 void dequeue()
 {
@@ -78,7 +79,7 @@ int main()
             {
                 printf(" %d ",circular_queue[i]);
             }
-            printf("%d",circular_queue[rear]);
+            printf(" %d ",circular_queue[rear]);
             break;
             default: printf("Incorrect choice entered\n");
         }
