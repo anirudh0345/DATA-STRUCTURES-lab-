@@ -58,6 +58,12 @@ int main()
 {
     int choice,i,num;
     printf("    Circular Queue  \n");
+    if(choice == 4)
+        {
+            break;
+        }
+    else
+    {
     while(1)
     {
         printf("\nInsert :1 Delete :2 Display :3 Exit:4\n");
@@ -84,6 +90,6 @@ int main()
             default: printf("Incorrect choice entered\n");
         }
     }
-
+    }
     return 0;
 }
