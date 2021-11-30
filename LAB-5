@@ -93,3 +93,114 @@ int main()
     }
     return 0;
 }
+// Prioriy queue
+//priority queue
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#define SIZE 6
+int pri_queue[SIZE];
+int rear = -1;
+int front = -1;
+bool is_full()
+{
+    if(rear==SIZE-1)
+    return true;
+    else
+    return false;
+}
+bool is_empty()
+{
+    if(front==-1 && rear==-1)
+    return true;
+    else 
+    return false;
+}
+void enqueue(int value)
+{
+    if(is_full())
+    {
+        printf("Queue is full");
+    }
+    else if(is_empty())
+    {
+        front=rear=0;
+        pri_queue[rear]=value;
+    }
+    else
+    {
+        rear++;
+        pri_queue[rear]=value;
+    }
+}
+void dequeue()
+{
+    if(is_empty())
+    {
+        printf("Queue is empty");
+    }
+    else if(front == rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front=front+1;
+    }
+}
+//integer with higher value is given more priority
+void sort()
+{
+    int t;
+    int i=0,j=0;
+    for(i=0;i<SIZE-1;i++)
+    {
+        for(j=0;j<SIZE-i-1;j++)
+        {
+            if(pri_queue[j]<pri_queue[j+1])
+            {
+                t=pri_queue[j];
+                pri_queue[j]=pri_queue[j+1];
+                pri_queue[j+1]=t;
+            }
+        }
+    }
+}
+int main()
+{
+    int num;
+    int choice,i;
+    while(1)
+    {
+    printf("\nInsert:1 Delete:2 Display:3 Exit:4\n");
+    printf("Enter your choice: \n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+        printf("Enter the element to be inserted: \n");
+        scanf("%d",&num);
+        enqueue(num);
+        break;
+        case 2:
+        sort();
+        dequeue();
+        break;
+        case 3:
+        printf("Queue elements are: \n");
+        if(is_empty())
+        {
+            printf("Queue is empty\n");
+        }
+        for(i=front;i<rear+1;i++)
+        {
+            printf(" %d ",pri_queue[i]);
+        }
+        break;
+        case 4:
+        exit(0);
+        default : printf("Incorrect number entered\n");
+    }
+    }
+    return 0;
+}
