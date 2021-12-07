@@ -1,0 +1,180 @@
+//add at starting
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct node{
+    int data;
+    struct node* next;
+};
+
+void insert(struct node** head, int new_data){
+    struct node* first = NULL;
+    first = (struct node*)malloc(sizeof(struct node));
+    first -> next = (*head);
+    first ->data = new_data;
+    (*head) = first;
+}
+
+
+void display(struct node* node){
+    while(node!=NULL){
+        printf("%d\n",node->data);
+        node = node -> next;
+    }
+    
+}
+
+int main()
+{
+     struct node* head = NULL;   
+     struct node* b = NULL;
+     
+     head = (struct node*)malloc(sizeof(struct node));
+     b = (struct node*)malloc(sizeof(struct node));
+     
+     head -> data = 10;
+     head -> next = b;
+     b -> data = 20;
+     b -> next = NULL;
+
+    
+    display(head);
+    
+    insert(&head,5);
+     
+    display(head);
+     
+    return 0;
+     
+     
+     
+     
+
+   
+}
+//add at end
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct node{
+    int data;
+    struct node* next;
+};
+
+void insert_end(struct node** head, int new_data){
+
+    struct node* node1 = head;
+
+    while(node1->next !=NULL){
+        node1 = node1 -> next;
+       
+    }
+    
+    struct node* end =NULL;
+    end = (struct node*)malloc(sizeof(struct node));
+    end -> next = NULL;
+    end -> data = new_data;
+    node1 -> next = end;
+    
+}
+
+
+void display(struct node* node){
+    while(node!=NULL){
+        printf("%d\n",node->data);
+        node = node -> next;
+    }
+    
+}
+
+int main()
+{
+     struct node* head = NULL;   
+     struct node* b = NULL;
+     
+     head = (struct node*)malloc(sizeof(struct node));
+     b = (struct node*)malloc(sizeof(struct node));
+     
+     head -> data = 10;
+     head -> next = b;
+     b -> data = 20;
+     b -> next = NULL;
+
+    
+    display(head);
+    
+    insert_end(&head,5);
+     
+    display(head);
+     
+    return 0;
+     
+     
+     
+     
+
+   
+}
+//add randomly
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct node{
+    int data;
+    struct node* next;
+};
+
+void insert_after(struct node* nodex, int new_data){
+
+    struct node* new_node = NULL;
+    new_node = (struct node*)malloc(sizeof(struct node));
+    new_node -> next = nodex ->next;
+    new_node -> data = new_data;
+
+    nodex -> next = new_node;
+    
+}
+
+
+void display(struct node* node){
+    while(node!=NULL){
+        printf("%d\n",node->data);
+        node = node -> next;
+    }
+    
+}
+
+int main()
+{
+     struct node* head = NULL;   
+     struct node* b = NULL;
+     
+     head = (struct node*)malloc(sizeof(struct node));
+     b = (struct node*)malloc(sizeof(struct node));
+     
+     head -> data = 10;
+     head -> next = b;
+     b -> data = 20;
+     b -> next = NULL;
+
+    
+    display(head);
+    
+    insert_after(head,5);
+     
+    display(head);
+     
+    return 0;
+     
+     
+     
+     
+
+   
+}
