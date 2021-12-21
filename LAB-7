@@ -1,0 +1,151 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *head;
+void insert_at_start();
+void display();
+void delete_at_start();
+void delete_at_end();
+void delete_at_pos();
+int main()
+{
+    int choice=0;
+    while(choice!=6)
+    {
+	printf("\nMain menu\n");
+    printf("Enter any one choice from list\n");
+    printf("1:Insert 2:Display 3:Delete at start 4: Delete at end 5:Delete at random position 6:Exit\n");
+    printf("Enter your choice: \n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+       case 1:
+       insert_at_start();
+       break;
+       case 2:
+       display();
+       break;
+       case 3:
+       delete_at_start();
+       break;
+       case 4:
+       delete_at_end();
+       break;
+       case 5:
+       delete_at_pos();
+       break;
+       default:printf("Incorrect number entered , please try again.\n");
+    }
+    }
+	return 0;
+}
+void insert_at_start()
+{
+    struct node *ptr;
+    int item;
+    ptr=(struct node*)malloc(sizeof(struct node*));
+    if(ptr==NULL)
+    {
+        printf("OVERFLOW\n");
+    }
+    else
+        {
+            printf("Enter the value: \n");
+            scanf("%d",&item);
+            ptr->data = item;
+            ptr->next = head;
+            head = ptr;
+            printf("Node inserted \n");
+        }
+}
+
+void display()
+{
+    struct node *ptr;
+    if(head==NULL)
+    {
+        printf("Empty list\n");
+    }
+    else
+    {
+    ptr=head;
+    printf("Elements of the list are:\n");
+    while(ptr!=NULL)
+    {
+        printf(" %d ",ptr->data);
+        ptr=ptr->next;
+    }
+    return;
+    }
+}
+
+void delete_at_start()
+{
+    struct node *ptr;
+    if(head==NULL)
+    {
+        printf("Empty list\n");
+    }
+    else
+    {
+        ptr=head;
+        head=ptr->next;
+        free(ptr);
+        printf("Node deleted\n");
+    }
+}
+
+void delete_at_end()
+{
+    struct node *ptr,*ptr1;
+    if(head==NULL)
+    {
+        printf("Empty list\n");
+    }
+    else if(head->next==NULL)
+    {
+        head=NULL;
+        free(head);
+        printf("Only node deleted\n");
+    }
+    else
+    {
+        ptr=head;
+        while(ptr->next!=NULL)
+        {
+        ptr1=ptr;
+        ptr=ptr->next;
+        }
+        ptr1->next=NULL;
+        free(ptr);
+        printf("Node deleted\n");
+    }
+}
+
+void delete_at_pos()
+{
+    struct node *ptr,*ptr1;
+    int i=0;
+    int loc=0;
+    printf("Enter the position: \n");
+    scanf("%d",&loc);
+    ptr=head;
+    for(i=0;i<loc;i++)
+    {
+        ptr1=ptr;
+        ptr=ptr->next;
+    }
+    if(ptr==NULL)
+    {
+        printf("Less than %d elements in list\n",loc);
+    }
+    else
+    {
+        ptr1->next=ptr->next;
+        free(ptr);
+        printf("Deleted node at %d position\n",loc);
+    }
+}
