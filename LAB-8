@@ -1,0 +1,165 @@
+//Stacks using linked list
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+};
+struct node *head=NULL;
+struct node *top=NULL;
+void push()
+{
+    struct node*newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    int item;
+    printf("enter the element\n");
+    scanf("%d",&item);
+    newnode->data=item;
+    newnode->next=NULL;
+    if(top==NULL)
+    {
+        top=newnode;
+    }
+    else
+    {
+    newnode->next=top;
+    top=newnode;
+    }
+}
+void pop()
+{
+    int data1;
+    if(top==NULL)
+    {
+        printf("stack underflow");
+        return;
+    }
+    else
+    {
+        data1=top->data;
+        top=top->next;
+        printf("popped is %d",data1);
+    }
+}
+void display()
+{
+struct node*temp=top;
+if(top==NULL)
+{
+    printf("\n stack is empty");
+}
+else
+{
+while(temp!=NULL)
+{
+    printf("%d\n",temp->data);
+    temp=temp->next;
+}
+}
+}    
+    int main()
+    {
+        int option;
+    do
+    {
+        printf("\n1:push the element\n2:pop the element\n3:display\n4:exit");
+        printf("\nenter your choice\n");
+        scanf("%d",&option);
+        switch(option)
+        {
+            case 1:push();
+            break;
+            case 2:pop();
+            break;
+            case 3:display();
+            break;
+        }
+    }while(option!=4);
+       return 0;
+}
+
+//Queues using linked list
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+};
+struct node *front=NULL;
+struct node *rear=NULL;
+void enqueue()
+{
+    struct node*newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    int item;
+    printf("enter the element\n");
+    scanf("%d",&item);
+    newnode->data=item;
+    newnode->next=NULL;
+    if(front==NULL)
+    {
+        front=newnode;
+        rear=newnode;
+    }
+    else
+    {
+        rear->next=newnode;
+        rear=newnode;
+    }
+}
+void dequeue()
+{
+    int data1;
+    if(front==NULL)
+    {
+        printf("Queue is empty");
+        return;
+    }
+    else
+    {
+        data1=front->data;
+        front=front->next;
+        printf("popped is %d",data1);
+    }
+}
+void display()
+{
+struct node*temp=front;
+if(front==NULL)
+{
+    printf("\nQueue is empty");
+    return;
+}
+else
+{
+while(temp!=NULL)
+{
+    printf("%d\n",temp->data);
+    temp=temp->next;
+}
+}
+}
+    
+    int main()
+    {
+        int option;
+    do
+    {
+        printf("\n1:enqueue the element\n2:dequeue the element\n3:display\n4:exit");
+        printf("\nenter your choice\n");
+        scanf("%d",&option);
+        switch(option)
+        {
+            case 1:enqueue();
+            break;
+            case 2:dequeue();
+            break;
+            case 3:display();
+            break;
+        }
+    }while(option!=4);
+       return 0;
+}
