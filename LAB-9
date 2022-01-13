@@ -1,0 +1,220 @@
+//Sorting,concatenation and reversing
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node1{
+    int data;
+    struct node1 *next;
+};
+struct node1 *head1 = NULL;
+struct node1 *temp1;
+struct node1 *temp3;
+
+struct node2{
+    int data;
+    struct node2 *next;
+};
+struct node2 *head2 = NULL;
+struct node2 *temp2;
+struct node2 *temp4;
+
+struct node3{
+    int data;
+    struct node3 *next;
+};
+struct node3 *head5 = NULL;
+struct node3 *temp5;
+
+void insert1()
+{
+    struct node1 *ptr = NULL;
+    ptr=(struct node1*)malloc(sizeof(struct node1));
+    printf("Enter the element: \n");
+    scanf("%d",&ptr->data);
+    ptr->next=NULL;
+      if(head1==NULL)
+    {
+        head1=ptr;
+        ptr->next = NULL;
+        printf("Node inserted\n");
+    }
+    else
+    {
+        temp1=head1;
+        while(temp1->next!=NULL)
+        {
+            temp1=temp1->next;
+        }
+        temp1->next=ptr;
+        printf("Node inserted\n");
+    }
+}
+void insert2()
+{
+    struct node2 *ptr = NULL;
+    ptr=(struct node2*)malloc(sizeof(struct node2));
+    printf("Enter the element: \n");
+    scanf("%d",&ptr->data);
+    ptr->next=NULL;
+      if(head2==NULL)
+    {
+        head2=ptr;
+        ptr->next = NULL;
+        printf("Node inserted\n");
+    }
+    else
+    {
+        temp2=head2;
+        while(temp2->next!=NULL)
+        {
+            temp2=temp2->next;
+        }
+        temp2->next=ptr;
+        printf("Node inserted\n");
+    }
+}
+void sort1()
+{
+    {
+    int item = 0;
+for(temp1=head1;temp1->next!=NULL;temp1=temp1->next)
+{
+    for(temp3=temp1->next;temp3!=NULL;temp3=temp3->next)
+    {
+     if(temp1->data>temp3->data)
+     {
+        item=temp1->data;
+        temp1->data=temp3->data;
+        temp3->data=item;
+     }
+    }
+}
+}
+}
+void sort2()
+{
+    {
+    int item = 0;
+for(temp2=head2;temp2->next!=NULL;temp2=temp2->next)
+{
+    for(temp4=temp2->next;temp4!=NULL;temp4=temp4->next)
+    {
+     if(temp2->data>temp4->data)
+     {
+        item=temp2->data;
+        temp2->data=temp4->data;
+        temp4->data=item;
+     }
+    }
+}
+}
+}
+void reverse1()
+{
+    struct node1 *current = head1;
+    struct node1 *prev = NULL;
+    struct node1 *further = NULL;
+    while(current!=NULL)
+    {
+        further = current->next;
+        current->next = prev;
+        prev = current;
+        current = further;
+    }
+    head1 = prev;
+}
+void reverse2()
+{
+    struct node2 *current = head2;
+    struct node2 *prev = NULL;
+    struct node2 *further = NULL;
+    while(current!=NULL)
+    {
+        further = current->next;
+        current->next = prev;
+        prev = current;
+        current = further;
+    }
+    head2 = prev;
+}
+void concat()
+{
+     struct node1 *temp1=head1;
+     struct node2 *temp2=head2;
+    while(temp1->next!=NULL)
+    {
+        temp1=temp1->next;
+    }
+    temp1->next = temp2;
+}
+void display1()
+{
+     struct node1 *temp1=head1;
+    while(temp1!=NULL)
+    {
+        printf("%d  ",temp1->data);
+        temp1=temp1->next;
+    }
+}
+void display2()
+{
+     struct node2 *temp2=head2;
+    while(temp2!=NULL)
+    {
+        printf("%d  ",temp2->data);
+        temp2=temp2->next;
+    }
+}
+void display_concat()
+{
+     struct node3 *temp5=head5;
+    while(temp5!=NULL)
+    {
+        printf("%d  ",temp5->data);
+        temp5=temp5->next;
+    }
+}
+int main()
+{
+    int choice = 0;
+    while(choice!=11)
+    {
+    printf("\n1: Insert in list 1 2: Insert in list 2 3:Sort1 4:Sort2 5:Reverse1 6:Reverse2 7:Concatenation 8:Display1 9:Display2 10:Display concat list 11:Exit\n ");
+    printf("Enter your choice:\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+        insert1();
+        break;
+        case 2:
+        insert2();
+        break;
+        case 3:
+        sort1();
+        break;
+        case 4:
+        sort2();
+        break;
+        case 5:
+        reverse1();
+        break;
+        case 6:
+        reverse2();
+        case 7:
+        concat();
+        break;
+        case 8:
+        display1();
+        break;
+        case 9:
+        display2();
+        break;
+        case 10:
+        display_concat();
+        break;
+        default:printf("Wrong number entered , please try again\n");
+    }
+    }
+    return 0;
+}
