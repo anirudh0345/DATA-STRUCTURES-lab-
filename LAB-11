@@ -1,0 +1,132 @@
+//friends list
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    char name[20];
+    double mob_no;
+    int likes;
+    struct node *next;
+    struct node *prev;
+};
+struct node *head = NULL;
+
+void insert_begin()
+{
+  struct node *newnode = (struct node *) malloc (sizeof (struct node));
+  printf ("Enter the friend name: \n");
+  scanf("%s",newnode->name);
+  printf("Enter mobile number: \n");
+  scanf("%lf",&newnode->mob_no);
+  printf("Enter number of likes: \n");
+  scanf("%d",&newnode->likes);
+  if (head == NULL)
+    {
+      newnode->next = NULL;
+      newnode->prev = NULL;
+      head = newnode;
+    }
+  else
+    {
+      newnode->prev = NULL;
+      newnode->next = head;
+      head->prev = newnode;
+      head = newnode;
+    }
+
+}
+
+void delete_by_value ()
+{
+    struct node *temp = head;
+    int i = 0;
+    int value = 0;
+    printf("Enter the element to be deleted : \n");
+    scanf("%d",&value);
+    while(temp->likes!= value)
+    {
+        temp = temp->next;
+    }
+    if(temp->next == NULL)
+    {
+        printf("Deletion not possible\n");
+    }
+    else
+    {
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+        free(temp);
+        printf("\nNode deleted\n");
+    }
+}
+
+void display()
+{
+  printf ("Elements of the list are: \n");
+  struct node *temp = head;
+  while (temp != NULL)
+    {
+      printf ("%s ",temp->name);
+      printf ("%lf ",temp->mob_no);
+      printf ("%d ",temp->likes);
+      printf("\n");
+      temp = temp->next;
+    }
+}
+void display_max()
+{
+    struct node *temp = head;
+    int max = 0;
+    int flag = 0;
+    max = head->likes;
+    printf ("Details of friend with most likes: \n");
+  temp = temp->next;
+  while (temp != NULL)
+    {
+      if(temp->likes >= max)
+      {
+      max = temp->likes;
+      }
+      else
+      {
+      flag = 1;
+      }
+      temp = temp->next;
+    }
+    temp = head;
+    while (temp != NULL && temp->likes!=max)
+    {
+        temp = temp->next;
+    }
+    printf ("%s ",temp->name);
+    printf ("%lf ",temp->mob_no);
+    printf ("%d ",temp->likes);
+}
+int main()
+{
+    int choice = 0;
+    printf("Facebook friends list\n");
+    while(choice!=5)
+    {
+    printf("1:Add a friend to list 2:Remove node 3:Display 4:Dispaly max 5:Exit\n");
+    printf("Enter your choice\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+        insert_begin();
+        break;
+        case 2:
+        delete_by_value();
+        break;
+        case 3:
+        display();
+        break;
+        case 4:
+        display_max();
+        break;
+        default:printf("Incorrect number entered. Please try again\n");
+    }
+    }
+    return 0;
+}
