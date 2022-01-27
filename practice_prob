@@ -1,0 +1,93 @@
+// 4. Grace marks(Diubly linked list)
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+    struct node *prev;
+};
+struct node *head = NULL;
+
+void insert_begin ()
+{
+  int item = 0;
+  struct node *newnode = (struct node *) malloc (sizeof (struct node));
+  printf ("Enter the student's marks: \n");
+  scanf ("%d", &item);
+  if (head == NULL)
+    {
+      newnode->next = NULL;
+      newnode->prev = NULL;
+      newnode->data = item;
+      head = newnode;
+    }
+  else
+    {
+      newnode->data = item;
+      newnode->prev = NULL;
+      newnode->next = head;
+      head->prev = newnode;
+      head = newnode;
+    }
+
+}
+
+void display ()
+{
+  printf ("Elements of the list are: \n");
+  struct node *temp = head;
+  while (temp != NULL)
+    {
+      printf ("%d  ", temp->data);
+      temp = temp->next;
+    }
+}
+
+void update()
+{
+    int id = 10;
+    struct node *temp = head;
+    while(temp!= NULL)
+    {
+        if(temp->data>id)
+        {
+            temp->data = temp->data + 2;
+        }
+        else
+        {
+            temp->data = temp->data;
+        }
+        temp = temp->next;
+    }
+}
+int main()
+{
+    int choice = 0;
+    printf("Grace marks identifier\n");
+    while("choice != 0")
+    {
+    printf("\n1:Insert a node 2:Display 3:Update 4:Exit\n");
+    printf("Enter the choice here: \n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+        insert_begin();
+        break;
+        case 2:
+        display();
+        break;
+        case 3:
+        update();
+        break;
+        case 4:
+        printf("\n");
+        break;
+        default: printf("Incorrect choice entered, please try again \n");
+        
+    }
+    }
+    return 0;
+}
+
