@@ -91,3 +91,134 @@ int main()
     return 0;
 }
 
+//3. Info of lowest marks student deleted
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    char name[20];
+    int roll_no;
+    int data;
+    struct node *next;
+};
+struct node *head;
+void insert_at_start();
+void display();
+void delete_at_pos();
+int main()
+{
+    int choice=0;
+    while(choice!=4)
+    {
+	printf("\nMain menu\n");
+    printf("Enter any one choice from list\n");
+    printf("1:Insert 2:Display 3:Delete lowest 4:Exit\n");
+    printf("Enter your choice: \n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+       case 1:
+       insert_at_start();
+       break;
+       case 2:
+       display();
+       break;
+       case 3:
+       delete_at_pos();
+       break;
+       default:printf("Incorrect number entered , please try again.\n");
+    }
+    }
+	return 0;
+}
+void insert_at_start()
+{
+    struct node *ptr;
+    int item;
+    ptr=(struct node*)malloc(sizeof(struct node));
+    if(ptr==NULL)
+    {
+        printf("OVERFLOW\n");
+    }
+    else
+        {
+            printf("Enter the name of student: \n");
+            scanf("%s",ptr->name);
+            printf("Enter the roll number of student: \n");
+            scanf("%d",&ptr->roll_no);
+            printf("Enter the marks of student: \n");
+            scanf("%d",&item);
+            ptr->data = item;
+            ptr->next = head;
+            head = ptr;
+            printf("Node inserted \n");
+        }
+}
+
+void display()
+{
+    struct node *ptr;
+    if(head==NULL)
+    {
+        printf("Empty list\n");
+    }
+    else
+    {
+    ptr=head;
+    printf("Elements of the list are:\n");
+    while(ptr!=NULL)
+    {
+        printf(" %s ",ptr->name);
+        printf(" %d ",ptr->roll_no);
+        printf(" %d \n",ptr->data);
+        ptr=ptr->next;
+    }
+    return;
+    }
+}
+void delete_at_pos()
+{
+    struct node *ptr,*ptr1;
+    ptr=head;
+    int i=0;
+    int loc = 0;
+    int flag = 0;
+    int lowest = ptr->data;
+    while(ptr != NULL)
+    {
+        if(ptr->data < lowest)
+        {
+            lowest = ptr->data;
+        }
+        else
+        {
+            flag++;
+        }
+        ptr = ptr->next;
+    }
+    ptr = head;
+    while(ptr->data != lowest)
+    {
+        ptr = ptr->next;
+        loc++;
+    }
+    ptr = head;
+    for(i=0;i<loc;i++)
+    {
+        ptr1=ptr;
+        ptr=ptr->next;
+    }
+    if(ptr==NULL)
+    {
+        printf("Less than %d elements in list\n",loc);
+    }
+    else
+    {
+        ptr1->next=ptr->next;
+        free(ptr);
+        printf("Deleted node at %d position\n",loc);
+    }
+}
+
+
+
