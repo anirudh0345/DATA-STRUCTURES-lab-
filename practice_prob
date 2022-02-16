@@ -219,6 +219,296 @@ void delete_at_pos()
         printf("Deleted node at %d position\n",loc);
     }
 }
+//2.Doubly linked list , display information of students with top 3 marks //5. Display info students (top3 and bottom3) based on marks
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    char name[20];
+    int roll_no;
+    int data;
+    struct node *next;
+    struct node *prev;
+};
+struct node *head = NULL;
+
+void insert_begin ()
+{
+  int item = 0;
+  struct node *newnode = (struct node *) malloc (sizeof (struct node));
+  printf ("Enter the student's marks: \n");
+  scanf ("%d", &item);
+  if (head == NULL)
+    {
+      newnode->next = NULL;
+      newnode->prev = NULL;
+      newnode->data = item;
+      head = newnode;
+    }
+  else
+    {
+      newnode->data = item;
+      newnode->prev = NULL;
+      newnode->next = head;
+      head->prev = newnode;
+      head = newnode;
+    }
+    printf ("Enter the student's name: \n");
+    scanf ("%s", newnode->name);
+    printf ("Enter the student's roll number: \n");
+    scanf ("%d", &newnode->roll_no);
+    printf ("Enter the student's marks: \n");
+}
+
+void display ()
+{
+  printf ("Student details are: \n");
+  struct node *temp = head;
+  while (temp != NULL)
+    {
+      printf (" %s ", temp->name);
+      printf (" %d ", temp->roll_no);
+      printf (" %d \n", temp->data);
+      temp = temp->next;
+    }
+}
+
+void specific_display2()
+{
+    int lowest[3];
+    int flag = 0;
+    struct node *temp = head;
+    temp = head;
+    lowest[0] = temp->data;
+    while(temp != NULL)
+    {
+        if(temp->data < lowest[0])
+        {
+            lowest[0] = temp->data;
+        }
+        else
+        {
+            flag++;
+        }
+      temp = temp->next;
+    }
+    temp = head;
+    lowest[1] = temp->data;
+    while(temp != NULL)
+    {
+        if(temp->data > lowest[0])
+        {
+            if(temp->data < lowest[1])
+            {
+                lowest[1] = temp->data;
+            }
+            else
+                flag++;
+        }
+        else 
+            flag++;
+        temp = temp->next;
+    }
+    temp = head;
+    lowest[2] = temp->data;
+    while(temp != NULL)
+    {
+        if(temp->data > lowest[0])
+        {
+            if(temp->data > lowest[1])
+            {
+                if(temp->data < lowest[2])
+                {
+                    lowest[2] = temp->data;
+                }
+                else
+                    flag++;
+            }
+            else
+                flag++;
+        }
+        else 
+            flag++;
+        temp = temp->next;
+    }
+    temp = head;
+    printf("Information of students with lowest 3 marks\n");
+    while(temp != NULL)
+    {
+        if(temp->data == lowest[0])
+        {
+            printf("Student name is %s   ",temp->name);
+            printf("Roll number is %d   ",temp->roll_no);
+            printf("Marks is %d   \n",temp->data);
+        }
+        else
+            flag++;
+        temp = temp->next;
+    }
+    temp = head;
+    while(temp != NULL)
+    {
+        if(temp->data == lowest[1])
+        {
+            printf("Student name is %s   ",temp->name);
+            printf("Roll number is %d   ",temp->roll_no);
+            printf("Marks is %d   \n",temp->data);
+        }
+        else
+            flag++;
+         temp = temp->next;
+    }
+    temp = head;
+    while(temp != NULL)
+    {
+        if(temp->data == lowest[2])
+        {
+            printf("Student name is %s   ",temp->name);
+            printf("Roll number is %d   ",temp->roll_no);
+            printf("Marks is %d   \n",temp->data);
+        }
+        else
+            flag++;
+         temp = temp->next;
+    }
+}
+
+void specific_display()
+{
+    int highest[3];
+    int flag = 0;
+    struct node *temp = head;
+    temp = head;
+    highest[0] = temp->data;
+    while(temp != NULL)
+    {
+        if(temp->data > highest[0])
+        {
+            highest[0] = temp->data;
+        }
+        else
+        {
+            flag++;
+        }
+      temp = temp->next;
+    }
+    temp = head;
+    highest[1] = temp->data;
+    while(temp != NULL)
+    {
+        if(temp->data < highest[0])
+        {
+            if(temp->data > highest[1])
+            {
+                highest[1] = temp->data;
+            }
+            else
+                flag++;
+        }
+        else 
+            flag++;
+        temp = temp->next;
+    }
+    temp = head;
+    highest[2] = temp->data;
+    while(temp != NULL)
+    {
+        if(temp->data < highest[0])
+        {
+            if(temp->data < highest[1])
+            {
+                if(temp->data > highest[2])
+                {
+                    highest[2] = temp->data;
+                }
+                else
+                    flag++;
+            }
+            else
+                flag++;
+        }
+        else 
+            flag++;
+        temp = temp->next;
+    }
+    temp = head;
+    printf("Information of students with highest 3 marks\n");
+    while(temp != NULL)
+    {
+        if(temp->data == highest[0])
+        {
+            printf("Student name is %s   ",temp->name);
+            printf("Roll number is %d   ",temp->roll_no);
+            printf("Marks is %d   \n",temp->data);
+        }
+        else
+            flag++;
+        temp = temp->next;
+    }
+    temp = head;
+    while(temp != NULL)
+    {
+        if(temp->data == highest[1])
+        {
+            printf("Student name is %s   ",temp->name);
+            printf("Roll number is %d   ",temp->roll_no);
+            printf("Marks is %d   \n",temp->data);
+        }
+        else
+            flag++;
+         temp = temp->next;
+    }
+    temp = head;
+    while(temp != NULL)
+    {
+        if(temp->data == highest[2])
+        {
+            printf("Student name is %s   ",temp->name);
+            printf("Roll number is %d   ",temp->roll_no);
+            printf("Marks is %d   \n",temp->data);
+        }
+        else
+            flag++;
+         temp = temp->next;
+    }
+}
+
+int main()
+{
+    int choice = 0;
+    printf("Specific display\n");
+    while(choice != 4)
+    {
+    printf("\n1:Insert a node 2:Display 3:Display highest three 4:Exit 5:Display lowest three\n");
+    printf("Enter the choice here: \n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+        insert_begin();
+        break;
+        case 2:
+        display();
+        break;
+        case 3:
+        specific_display();
+        break;
+        case 4:
+        printf("\n");
+        break;
+        case 5:
+        specific_display2();
+        break;
+        default: printf("Incorrect choice entered, please try again \n");
+        
+    }
+    }
+    return 0;
+}
+
+
+
+
 
 
 
